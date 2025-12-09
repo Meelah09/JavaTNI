@@ -26,3 +26,48 @@ public class Ex301 {
         }
     }
 }
+
+import javax.swing.*;
+
+public class Lab401 {
+    public static void main(String[] args) {
+        String fullName;
+        while (true) {
+            fullName = JOptionPane.showInputDialog(null, "Enter your full name:");
+
+            if (fullName == null) {   // กด Cancel
+                return;
+            }
+
+            fullName = fullName.trim();
+
+            // แยกชื่อ และนามสกุล
+            String[] parts = fullName.split(" ");
+
+            // ต้องมี 2 คำเท่านั้น
+            if (parts.length == 2) {
+                String firstName = parts[0];
+                String lastName = parts[1];
+
+                // คำแรกเป็นตัวอักษรล้วน และคำสองก็ต้องเป็นตัวอักษรล้วน
+                if (firstName.matches("[a-zA-Z]+") && lastName.matches("[a-zA-Z]+")) {
+
+                    // จัดรูปแบบตามโจทย์
+                    String formattedFirst =
+                            firstName.substring(0, 1).toUpperCase() +
+                            firstName.substring(1).toLowerCase();
+
+                    String formattedLast = lastName.toUpperCase();
+
+                    JOptionPane.showMessageDialog(null,
+                            "Welcome, " + formattedFirst + " " + formattedLast);
+                    break;
+                }
+            }
+
+            // ถ้ารูปแบบผิด
+            JOptionPane.showMessageDialog(null, "Invalid full name, please try again.");
+        }
+    }
+}
+
